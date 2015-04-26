@@ -1,0 +1,24 @@
+{
+  "name": "signature",
+  "version": "0.0.1",
+  "main": "public/app.js",
+  "authors": [
+    "jorditeddy@gmail.com"
+  ],
+  "description": "signature manager for eve online",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "exoskeleton": "~0.7.0",
+    "backbone.nativeview": "~0.3.2"
+  }
+}
