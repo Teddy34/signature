@@ -7,7 +7,8 @@ exports.config =
         'vendor.js': /^bower_components/
       order:
         before: [
-          /exoskeleton/
+          /underscore/
+          /jquery/
         ]
     stylesheets:
       joinTo: 'app.css'

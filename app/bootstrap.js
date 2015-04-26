@@ -13,5 +13,5 @@ var application = require('main');
 
 (function() {
   application.initialize();
-  Exoskeleton.history.start();
+  Backbone.history.start();
 }());

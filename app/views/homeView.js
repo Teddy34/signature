@@ -1,11 +1,15 @@
 module.exports = Backbone.View.extend({
 
-  // Le template principal
-  //template: require('./templates/home'),
+  el: '#root',
 
-  // Après le rendering complet (initial), on procède aux initialisations
-  // de comportements et injections des vues imbriquées
+  template: require('./templates/home'),
+
   initialize: function() {
-  	alert("Alerts suck.");
+  	console.log("Alerts suck.");
+  },
+
+  render: function() {
+  	this.$el.html(this.template);
   }
+
 });
