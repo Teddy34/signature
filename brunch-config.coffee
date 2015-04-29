@@ -11,7 +11,9 @@ exports.config =
           /jquery/
         ]
     stylesheets:
-      joinTo: 'app.css'
+      joinTo:
+        'app.css': /^app/
+        'vendor.css': /^(bootstrap.css|)/
     templates:
       joinTo: 'app.js'
   server:
