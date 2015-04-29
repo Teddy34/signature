@@ -8,6 +8,9 @@ This is HTML5 application, built with [Brunch](http://brunch.io).
     * [Brunch](http://brunch.io): `npm install -g brunch`
     * [Bower](http://bower.io): `npm install -g bower`
     * Brunch plugins and Bower dependencies: `npm install & bower install`.
+    * Create your credential files based on server/_ccpCredentials.js & server/_databaseCredentials.js
+    * for _ccpCredentials see [CCP Website](https://developers.eveonline.com/resource/single-sign-on)
+    * for _databaseCredentials.js see [Modulus.io blog](http://blog.modulus.io/getting-started-with-mongoose)
 * Run:
     * `brunch watch --server` — watches the project with continuous rebuild. This will also launch HTTP server with [pushState](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history).
     * `brunch build --production` — builds minified project for production

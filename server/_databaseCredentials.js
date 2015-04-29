@@ -1,0 +1,1 @@
+module.exports = "mongodb://<user>:<password>:@proximus.modulusmongo.net:27017/<myBase>";
