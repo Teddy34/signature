@@ -1,3 +1,5 @@
+var signatureInputView = require('./signatureInputView');
+
 module.exports = Backbone.View.extend({
 
   el: 'body',
@@ -12,6 +14,7 @@ module.exports = Backbone.View.extend({
   	this.ownerDisclaimer = "Created by Tethys Luxor";
   	this.ccpDisclaimer = "All Eve Online materials belongs to CCP";
   	this.specialThanksDisclaimer = "Special thanks to Exploration Frontier Inc.";
+    _.bindAll(this,'afterRender');
   },
 
   getRenderData: function() {
@@ -27,6 +30,13 @@ module.exports = Backbone.View.extend({
 
   render: function() {
   	this.$el.html(this.template(this.getRenderData()));
+    _.defer(this.afterRender);
+    return this;
+  },
+
+  afterRender: function() {
+    console.log(this.$("#input-root")[0]);
+    new signatureInputView({el: this.$("#input-root")}).render();
   }
 
 });
