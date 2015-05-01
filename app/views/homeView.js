@@ -1,4 +1,5 @@
 var signatureInputView = require('./signatureInputView');
+var signatureView = require('./signatureView');
 
 module.exports = Backbone.View.extend({
 
@@ -35,8 +36,24 @@ module.exports = Backbone.View.extend({
   },
 
   afterRender: function() {
-    console.log(this.$("#input-root")[0]);
-    new signatureInputView({el: this.$("#input-root")}).render();
+    new signatureInputView({el: this.$('#input-root')}).render();
+    var $TableBody = this.$('#result-table-root');
+
+    $TableBody.append(new signatureView({
+      sigRegionLabel: 'Fountain',
+      sigSystemLabel: 'YZ-bidule',
+      sigTypeLabel: 'combat site',
+      sigNameLabel: 'sansha prison',
+      sigDiscovererLabel: 'Tethys Luxor',
+    }).render().el);
+
+    $TableBody.append(new signatureView({
+      sigRegionLabel: 'Catch',
+      sigSystemLabel: 'W-MPTH',
+      sigTypeLabel: 'relic site',
+      sigNameLabel: 'sansha monument',
+      sigDiscovererLabel: 'Bastien Cash',
+    }).render().el);
   }
 
 });

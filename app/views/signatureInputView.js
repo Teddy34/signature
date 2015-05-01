@@ -15,9 +15,19 @@ module.exports = Backbone.View.extend({
     };
   },
 
+  events: {
+    "click button[type=button]": "addSignatures"
+  },
+
   render: function() {
     console.log("rendering signature input view: ",this.template());
   	this.$el.html(this.template(this.getRenderData()));
+    return this;
+  },
+
+  addSignatures: function(event) {
+    console.log("clicked");
+    console.log(event);
   }
 
 });
