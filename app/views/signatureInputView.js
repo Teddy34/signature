@@ -7,7 +7,6 @@ module.exports = Backbone.View.extend({
   initialize: function() {
     this.buttonLabel = "Add Signatures";
     this.textboxLabel = "Copy paste signatures here";
-    console.log("initialize:", this.$el);
   },
 
   getRenderData: function() {
@@ -22,7 +21,6 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("rendering signature input view: ",this.template());
   	this.$el.html(this.template(this.getRenderData()));
     this.$('textarea').val('YJK-344    Cosmic Anomaly    Combat Site    Drone Assembly    100,00%    5,17 AU');
     return this;

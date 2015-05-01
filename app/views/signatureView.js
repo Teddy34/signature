@@ -5,7 +5,6 @@ module.exports = Backbone.View.extend({
   tagName:'tr',
 
   initialize: function(args) {
-    console.log("sig init ",args);
     this.sigRegionLabel = args.sigRegionLabel || "region";
     this.sigSystemLabel = args.sigSystemLabel || "system";
     this.sigIDLabel = args.sigIDLabel || "system";
@@ -17,7 +16,6 @@ module.exports = Backbone.View.extend({
   },
 
   getRenderData: function() {
-    console.log("sig render data");
     return {
       sigRegionLabel: this.sigRegionLabel,
       sigSystemLabel: this.sigSystemLabel,
@@ -36,8 +34,6 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("sig render", this.el);
-    console.log("rendering signature view: ",this.template(this.getRenderData()));
   	this.$el.append(this.template(this.getRenderData()));
     return this;
   },

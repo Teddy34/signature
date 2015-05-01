@@ -1,5 +1,5 @@
 var signatureInputView = require('./signatureInputView');
-var signatureView = require('./signatureView');
+var signatureFilterResultView = require('./signatureFilterResultView');
 
 module.exports = Backbone.View.extend({
 
@@ -8,7 +8,6 @@ module.exports = Backbone.View.extend({
   template: require('./templates/home'),
 
   initialize: function() {
-  	console.log("Alerts suck.");
   	this.iconSite = "images/brave-collective-logo.png";
   	this.siteName = "Spoutnik";
   	this.iconOwnerPortrait = "images/brave-collective-logo.png";
@@ -37,25 +36,7 @@ module.exports = Backbone.View.extend({
 
   afterRender: function() {
     new signatureInputView({el: this.$('#input-root')}).render();
-    var $TableBody = this.$('#result-table-root');
-
-    $TableBody.append(new signatureView({
-      sigRegionLabel: 'Fountain',
-      sigSystemLabel: 'YZ-bidule',
-      sigIDLabel: 'ZEL-555',
-      sigTypeLabel: 'combat site',
-      sigNameLabel: 'sansha prison',
-      sigDiscovererLabel: 'Tethys Luxor',
-    }).render().el);
-
-    $TableBody.append(new signatureView({
-      sigRegionLabel: 'Catch',
-      sigSystemLabel: 'W-MPTH',
-      sigIDLabel: 'XXD-666',
-      sigTypeLabel: 'relic site',
-      sigNameLabel: 'sansha monument',
-      sigDiscovererLabel: 'Bastien Cash',
-    }).render().el);
+    new signatureFilterResultView({el: this.$('#result-root')}).render();
   }
 
 });
