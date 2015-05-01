@@ -1,3 +1,5 @@
+var signatureParser = require('../signatureParser');
+
 module.exports = Backbone.View.extend({
 
   template: require('./templates/signatureInput'),
@@ -22,12 +24,20 @@ module.exports = Backbone.View.extend({
   render: function() {
     console.log("rendering signature input view: ",this.template());
   	this.$el.html(this.template(this.getRenderData()));
+    this.$('textarea').val('YJK-344    Cosmic Anomaly    Combat Site    Drone Assembly    100,00%    5,17 AU');
     return this;
   },
 
   addSignatures: function(event) {
-    console.log("clicked");
-    console.log(event);
+    console.log("clicked: ", this.$("textarea").val() );
+    var signatures = signatureParser(    {
+                        rawText: this.$("textarea").val(),
+                        characterId: "13456",
+                        systemId: "987654",
+                        date: Date.now()
+                    });
+
+    console.log(signatures);
   }
 
 });

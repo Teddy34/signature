@@ -1,4 +1,3 @@
-var _ = require('lodash');
 //var util = require('util');
 
 var signatureParse = function(args) {
@@ -14,7 +13,7 @@ var signatureParse = function(args) {
         signatureType: splittedText[2],
         signatureName: splittedText[3],
       }, basicInformations);
-  }).value();
+  });
 
   return finalArray;
 }
