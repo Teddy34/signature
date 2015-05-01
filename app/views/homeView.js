@@ -42,6 +42,7 @@ module.exports = Backbone.View.extend({
     $TableBody.append(new signatureView({
       sigRegionLabel: 'Fountain',
       sigSystemLabel: 'YZ-bidule',
+      sigIDLabel: 'ZEL-555',
       sigTypeLabel: 'combat site',
       sigNameLabel: 'sansha prison',
       sigDiscovererLabel: 'Tethys Luxor',
@@ -50,6 +51,7 @@ module.exports = Backbone.View.extend({
     $TableBody.append(new signatureView({
       sigRegionLabel: 'Catch',
       sigSystemLabel: 'W-MPTH',
+      sigIDLabel: 'XXD-666',
       sigTypeLabel: 'relic site',
       sigNameLabel: 'sansha monument',
       sigDiscovererLabel: 'Bastien Cash',

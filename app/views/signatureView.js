@@ -8,6 +8,7 @@ module.exports = Backbone.View.extend({
     console.log("sig init ",args);
     this.sigRegionLabel = args.sigRegionLabel || "region";
     this.sigSystemLabel = args.sigSystemLabel || "system";
+    this.sigIDLabel = args.sigIDLabel || "system";
     this.sigTypeLabel = args.sigTypeLabel || "type";
     this.sigNameLabel = args.sigNameLabel || "name";
     this.sigDiscovererLabel = args.sigDiscovererLabel || "discoverer";
@@ -16,10 +17,11 @@ module.exports = Backbone.View.extend({
   },
 
   getRenderData: function() {
-          console.log("sig render data");
+    console.log("sig render data");
     return {
       sigRegionLabel: this.sigRegionLabel,
       sigSystemLabel: this.sigSystemLabel,
+      sigIDLabel: this.sigIDLabel,
       sigTypeLabel: this.sigTypeLabel,
       sigNameLabel: this.sigNameLabel,
       sigDiscovererLabel: this.sigDiscovererLabel,
@@ -29,8 +31,8 @@ module.exports = Backbone.View.extend({
   },
 
   events: {
-    "click button[type=button]": "removeSignature",
-    "click button[type=button]": "addSignatures",
+    "click .tip-discoverer": "tipDiscoverer",
+    "click .remove-signature": "removeSignature",
   },
 
   render: function() {
@@ -40,8 +42,12 @@ module.exports = Backbone.View.extend({
     return this;
   },
 
+  tipDiscoverer: function(event) {
+    console.log("tipDiscovererclicked: ",this.sigDiscovererLabel);
+  },
+
   removeSignature: function(event) {
-    console.log("removeSignatureclicked");
+    console.log("removeSignatureclicked: ", this.sigIDLabel);
   }
 
 });
