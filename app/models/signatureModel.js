@@ -2,5 +2,5 @@
 // ================
 
 'use strict';
-module.exports = Exoskeleton.Model.extend({
+module.exports = Backbone.Model.extend({
 });
