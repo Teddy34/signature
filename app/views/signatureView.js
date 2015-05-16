@@ -53,6 +53,7 @@ module.exports = Backbone.View.extend({
 // click handler for remove signature button
   removeSignature: function(event) {
     console.log("removeSignatureclicked: ", this.sigIDLabel);
+    require('../models/signatures').remove(this.sigIDLabel);
   }
 
 });

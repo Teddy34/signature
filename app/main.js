@@ -7,7 +7,7 @@ var Application = {
   initialize: function() {
     var HomeView = require('views/homeView');
     var Router = require('misc/router');
-    var persistence = require('misc/persistence');
+    var persistence = require('models/signatures');
 
     var applicationModel = require('models/applicationModel');
 

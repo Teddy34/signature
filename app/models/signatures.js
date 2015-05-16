@@ -10,7 +10,7 @@ var fetchBysystem = function fetch(sSystemId) {
 	myCollection.fetch({data:{systemId: sSystemId}, reset: true});
 };
 
-var create = function fetch(signatures) {
+var create = function create(signatures) {
 	console.log("create sigs");
 	_.each(signatures, function(signature) {
 		console.log("creating: ", signature);
@@ -19,6 +19,18 @@ var create = function fetch(signatures) {
 			myCollection.create(signature);
 		}
 	});
+};
+
+var remove = function remove(signatureId) {
+	var signatureToRemove = myCollection.findWhere({signatureId: signatureId});
+	if (signatureToRemove) {
+		myCollection.remove(signatureToRemove);
+	}
+
+};
+
+var getInSystem = function getInSystem(systemId) {
+	return myCollection.where({systemId: systemId});
 };
 
 myCollection.on('change', function(model) {
@@ -34,3 +46,5 @@ myCollection.on('add', function(model) {
 
 module.exports.fetchBysystem = fetchBysystem;
 module.exports.create = create;
+module.exports.remove = remove;
+module.exports.getInSystem = getInSystem;
