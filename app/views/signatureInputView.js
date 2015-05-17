@@ -1,4 +1,4 @@
-var signatureParser = require('../signatureParser');
+var signatureParser = require('../misc/signatureParser');
 
 // small helper for test purposes
 function makeid()
@@ -69,8 +69,6 @@ module.exports = Backbone.View.extend({
 // click handler to analyse input
 // will update the model
   addSignatures: function(event) {
-    this.clearInput();
-    this.testPopulate();
 
     console.log("clicked: ", this.$("textarea").val() );
     var applicationModel = require('models/applicationModel');
@@ -82,9 +80,10 @@ module.exports = Backbone.View.extend({
                         date: Date.now()
                     });
 
-    require('../models/signatures').create(signatures);
+    var result = require('../models/signatures').createAndUpdate(signatures);
 
-    console.log(signatures);
+    this.clearInput();
+    this.testPopulate();
   }
 
 });

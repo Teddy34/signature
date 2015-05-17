@@ -1,24 +1,33 @@
 var Collection = require('models/signatureCollection');
 var myCollection = new Collection();
 
-var validator = function validator(signature) {
-	//to be coded
-	return true;
+//  should return an object that contains the processed signature and the resulting model:
+//    null if the signature is refused (duplicate)
+//    a new model if the signature is new
+//    existing model of the signature is updated
+var findValidateAndCreate = function findValidateAndCreate(signature) {
+	
+	var result = {processedSignature:signature};
+	// 1st test if we already have this signature
+	var existingSignature = myCollection.findWhere({signatureId: signature.signatureId});
+	if (!existingSignature) {
+		result.model = myCollection.create(signature);
+		result.action = 'create';
+	}
+	// for now do nothing but later: update
+	else {
+		result.action = 'duplicate';
+	}
+	return result;
 };
 
 var fetchBysystem = function fetch(sSystemId) {
 	myCollection.fetch({data:{systemId: sSystemId}, reset: true});
 };
 
-var create = function create(signatures) {
+var createAndUpdate = function createAndUpdate(signatures) {
 	console.log("create sigs");
-	_.each(signatures, function(signature) {
-		console.log("creating: ", signature);
-		if (validator(signature)) {
-			console.log('adding');
-			myCollection.create(signature);
-		}
-	});
+	return _.map(signatures, findValidateAndCreate, this);
 };
 
 var remove = function remove(signatureId) {
@@ -60,6 +69,6 @@ myCollection.on('destroy', function(model) {
 
 
 module.exports.fetchBysystem = fetchBysystem;
-module.exports.create = create;
+module.exports.createAndUpdate = createAndUpdate;
 module.exports.remove = remove;
 module.exports.getInSystem = getInSystem;
