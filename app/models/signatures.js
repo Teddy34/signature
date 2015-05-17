@@ -24,9 +24,13 @@ var create = function create(signatures) {
 var remove = function remove(signatureId) {
 	var signatureToRemove = myCollection.findWhere({signatureId: signatureId});
 	if (signatureToRemove) {
-		myCollection.remove(signatureToRemove);
+		console.log("signature found")
+		signatureToRemove.destroy({
+			success: function success(){console.log("remove success")},
+			error: function error(){console.log("remove error")},
+		});
+		//myCollection.remove(signatureToRemove);
 	}
-
 };
 
 var getInSystem = function getInSystem(systemId) {
@@ -34,14 +38,25 @@ var getInSystem = function getInSystem(systemId) {
 };
 
 myCollection.on('change', function(model) {
-	Backbone.Mediator.publish('signature:change', model.toJSON());
+	Backbone.Mediator.publish('signatures:change', model.toJSON());
 	console.log('JORDI CHANGE : ', model);
 });
 
 myCollection.on('add', function(model) {
-	Backbone.Mediator.publish('signature:new', model.toJSON());
+	Backbone.Mediator.publish('signatures:add', model.toJSON());
 	console.log('JORDI ADDED : ', model);
 });
+
+myCollection.on('sync', function(model) {
+	Backbone.Mediator.publish('signatures:sync', model.toJSON());
+	console.log('JORDI Sync : ', model);
+});
+
+myCollection.on('destroy', function(model) {
+	Backbone.Mediator.publish('signatures:destroy', model.toJSON());
+	console.log('JORDI destroy : ', model);
+});
+
 
 
 module.exports.fetchBysystem = fetchBysystem;

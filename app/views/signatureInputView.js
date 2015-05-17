@@ -53,13 +53,25 @@ module.exports = Backbone.View.extend({
   render: function() {
   	this.$el.html(this.template(this.getRenderData()));
     // temporary test default value
-    this.$('textarea').val(makeid() + '    Cosmic Anomaly    Combat Site    Drone Assembly    100,00%    5,17 AU');
+    this.testPopulate();
     return this;
+  },
+
+  clearInput: function() {
+    this.$('textarea').val('');
+  },
+
+  testPopulate: function() {
+    // temporary test default value
+    this.$('textarea').val(makeid() + '    Cosmic Anomaly    Combat Site    Drone Assembly    100,00%    5,17 AU');
   },
 
 // click handler to analyse input
 // will update the model
   addSignatures: function(event) {
+    this.clearInput();
+    this.testPopulate();
+
     console.log("clicked: ", this.$("textarea").val() );
     var applicationModel = require('models/applicationModel');
     // the parser will provide an array of signatures object
@@ -70,7 +82,7 @@ module.exports = Backbone.View.extend({
                         date: Date.now()
                     });
 
-    require('misc/persistence').create(signatures);
+    require('../models/signatures').create(signatures);
 
     console.log(signatures);
   }

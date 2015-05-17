@@ -11,7 +11,8 @@ module.exports = Backbone.View.extend({
 
 // classic initialize function
   initialize: function(args) {
-    _.bindAll(this,'sync');
+    this.signatureViews = [];
+    _.bindAll(this,'populate');
   },
 
 // render function of the view
@@ -22,26 +23,36 @@ module.exports = Backbone.View.extend({
   },
 
   subscriptions: {
-    'signatures:sync': 'sync',
+    'signatures:sync': 'populate',
+    'signatures:destroy': 'populate',
+  },
+
+  removeSignatures: function() {
+      _.each(this.signatureViews, function(view) {
+        view.remove();
+      });
+      this.signatureViews = [];
   },
 
 //  Once current view is added to the dom, we append child view to this view
-  sync: function() {
-    var $TableBody = this.$('.result-table-root');
+  populate: function() {
+    this.removeSignatures();
 
+    var $TableBody = this.$('.result-table-root');
     var signaturesInSystem = signatures.getInSystem(applicationModel.get('systemId'));
-    console.log("TEST:", signaturesInSystem, applicationModel.get('systemId'));
 
     _.each(signaturesInSystem, function(oneSignature) {
-      $TableBody.append(new signatureView({
+      var newSignatureView = new signatureView({
         sigRegionLabel: 'Fountain',
         sigSystemLabel: 'YZ-bidule',
-        sigIDLabel: oneSignature.sigIDLabel,
-        sigTypeLabel: oneSignature.sigTypeLabel,
-        sigNameLabel: oneSignature.sigNameLabel,
+        sigIDLabel: oneSignature.attributes.signatureId,
+        sigTypeLabel: oneSignature.attributes.signatureType,
+        sigNameLabel: oneSignature.attributes.signatureName,
         sigDiscovererLabel: 'Tethys Luxor',
-      }).render().el);
-    });
+      });
+      this.signatureViews.push(newSignatureView);
+      $TableBody.append(newSignatureView.render().el);
+    }, this);
 
     /*$TableBody.append(new signatureView({
       sigRegionLabel: 'Fountain',

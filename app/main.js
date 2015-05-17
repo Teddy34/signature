@@ -7,7 +7,7 @@ var Application = {
   initialize: function() {
     var HomeView = require('views/homeView');
     var Router = require('misc/router');
-    var persistence = require('models/signatures');
+    var signatures = require('models/signatures');
 
     var applicationModel = require('models/applicationModel');
 
@@ -16,6 +16,8 @@ var Application = {
     	characterId: '123456',
     	systemId: '987654'
     });
+
+    signatures.fetchBysystem(applicationModel.get('systemId'));
 
     this.homeView = new HomeView();
     this.router = new Router();
